@@ -106,13 +106,12 @@ class Qdrandb:
         print(f"Inserted {len(documents)} records into collection {collection_name}")
         return True
     
-    def search_by_vector(self,collection_name:str,vector:List[float], top_k:int=20, filter:dict=None):
+    def search_by_vector(self,collection_name:str,query_vector:List[float], top_k:int=20, filter:dict=None):
         
         return self.client.search(
             collection_name=collection_name,
-            query_vector=vector,
+            query_vector=query_vector,
             limit=top_k,
-            filter=filter,
             with_payload=True,
             with_vectors=False,
         )

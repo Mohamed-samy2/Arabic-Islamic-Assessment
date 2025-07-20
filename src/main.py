@@ -10,9 +10,11 @@ def main():
     
     db.connect()
     
-    db.create_collection(collection_name=settings.DB_NAME,embedding_size=settings.Embedding_Model_Size,do_reset=settings.DO_RESET)
+    is_created = db.create_collection(collection_name=settings.DB_NAME,embedding_size=settings.Embedding_Model_Size,do_reset=settings.DO_RESET)
     
-    db.insert_documents(collection_name=settings.DB_NAME,documents=["Hello World"],embedding_vectors=[[1]*settings.Embedding_Model_Size],metadata=[{"text":"Hello World"}])
+    db.insert_documents(collection_name=settings.DB_NAME,documents=["Hello World"],embedding_vectors=[[1.2]*settings.Embedding_Model_Size],metadata=[{"text":"Hello World"}])
 
+    results = db.search_by_vector(collection_name=settings.DB_NAME,query_vector=[1.2]*settings.Embedding_Model_Size,top_k=2)
+    print(results)
 
 main()
