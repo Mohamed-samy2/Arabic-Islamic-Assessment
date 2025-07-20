@@ -1,8 +1,8 @@
 from qdrant_client import models,QdrantClient
-from qdrant_client.http.models import HnswConfig
+from qdrant_client.http.models import HnswConfigDiff
 from typing import List
 import os
-
+import uuid
 class Qdrandb:
     def __init__(self,db_path:str,distance_method:str="cosine"):
         
@@ -43,7 +43,7 @@ class Qdrandb:
             collection_name=collection_name,
             vectors_config=models.VectorParams(size=embedding_size,
                                             distance=self.distance_method,
-                                            hnsw_config=HnswConfig(
+                                            hnsw_config=HnswConfigDiff(
                                                 m=32,
                                                 ef_construct=128,
                                                 full_scan_threshold=512,
@@ -70,6 +70,10 @@ class Qdrandb:
             metadata = [{}] * len(documents)
             
         
+        if not (len(documents) == len(embedding_vectors)):
+            print("Documents and embeddings must be the same length")
+            return False
+        
         for i in range(0, len(documents), batch_size):
             batch_documents = documents[i:i + batch_size]
             batch_embedding_vectors = embedding_vectors[i:i + batch_size]
@@ -78,6 +82,7 @@ class Qdrandb:
             batch_records =[
                 
                 models.Record(
+                    id=str(uuid.uuid4()),
                     vector=batch_embedding_vectors[x],
                     payload={
                         "text": batch_documents[x],
@@ -98,7 +103,7 @@ class Qdrandb:
                 print(e)
                 return False
             
-        print(f"Inserted {len(batch_documents)} records into collection {collection_name}")
+        print(f"Inserted {len(documents)} records into collection {collection_name}")
         return True
     
     def search_by_vector(self,collection_name:str,vector:List[float], top_k:int=20, filter:dict=None):
