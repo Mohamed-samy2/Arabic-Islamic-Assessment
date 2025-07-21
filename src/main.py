@@ -14,7 +14,7 @@ def main():
     
     db.insert_documents(collection_name=settings.DB_NAME,documents=["Hello World"],embedding_vectors=[[1.2]*settings.Embedding_Model_Size],metadata=[{"text":"Hello World"}])
 
-    results = db.search_by_vector(collection_name=settings.DB_NAME,query_vector=[1.2]*settings.Embedding_Model_Size,top_k=2)
+    results = db.search_by_vector(collection_name=settings.DB_NAME,query_vector=[1.2]*settings.Embedding_Model_Size,top_k=20)
     print(results)
 
 main()

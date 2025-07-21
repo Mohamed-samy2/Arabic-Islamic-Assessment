@@ -49,6 +49,11 @@ class Qdrandb:
                                                 full_scan_threshold=512,
                                                 payload_m=32)
                                             ),
+            optimizers_config=models.OptimizersConfigDiff(
+                indexing_threshold=1000,
+                default_segment_number=20,
+                max_optimization_threads=4,
+            ),
             timeout=20,
         )
         print(f"Collection {collection_name} created")
