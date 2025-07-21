@@ -9,6 +9,12 @@ class Settings(BaseSettings):
     Data_Path:str
     DO_RESET:bool
     DB_NAME:str
+    
+    Embedding_Model_Name:str
+    BATCH_SIZE:int
+    
+    CHUNK_SIZE:int
+    CHUNK_OVERLAP:int
 
     class Config:
         env_file = ".env"

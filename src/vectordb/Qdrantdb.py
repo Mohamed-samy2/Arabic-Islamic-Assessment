@@ -3,7 +3,7 @@ from qdrant_client.http.models import HnswConfigDiff
 from typing import List
 import os
 import uuid
-class Qdrandb:
+class Qdrantdb:
     def __init__(self,db_path:str,distance_method:str="cosine"):
         
         self.client=None
@@ -50,7 +50,7 @@ class Qdrandb:
                                                 payload_m=32)
                                             ),
             optimizers_config=models.OptimizersConfigDiff(
-                indexing_threshold=1000,
+                indexing_threshold=10000,
                 default_segment_number=20,
                 max_optimization_threads=4,
             ),
