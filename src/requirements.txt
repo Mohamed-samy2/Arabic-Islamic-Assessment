@@ -3,9 +3,10 @@ pydantic-settings==2.10.1
 torch
 torchvision
 torchaudio
---index-url https://download.pytorch.org/whl/cu126
+--extra-index-url https://download.pytorch.org/whl/cu126
 langchain-community==0.3.27
 langchain-huggingface==0.3.0
 mammoth==1.9.1
 python-docx==1.2.0
 sentence-transformers==5.0.0
+pandas

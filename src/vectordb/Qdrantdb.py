@@ -50,7 +50,7 @@ class Qdrantdb:
                                                 payload_m=32)
                                             ),
             optimizers_config=models.OptimizersConfigDiff(
-                indexing_threshold=10000,
+                indexing_threshold=25000,
                 default_segment_number=20,
                 max_optimization_threads=4,
             ),
@@ -101,7 +101,7 @@ class Qdrantdb:
                     collection_name=collection_name,
                     batch_size=batch_size,
                     records=batch_records,
-                    parallel=3,
+                    parallel=4,
                     wait=True,
                 )
             except Exception as e:
