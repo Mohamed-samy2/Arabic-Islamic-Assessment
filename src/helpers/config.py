@@ -15,7 +15,12 @@ class Settings(BaseSettings):
     
     CHUNK_SIZE:int
     CHUNK_OVERLAP:int
-
+    
+    LLM_MODEL_NAME: str
+    API_KEY :str
+    API_URL :str
+    
+    EVALUATION_DATA_PATH :str
     class Config:
         env_file = ".env"
 

@@ -61,7 +61,7 @@ def main():
             print(f"Finished {i}/{number_of_files}")
             i+=1
 
-    # results = db.search_by_vector(collection_name=settings.DB_NAME,query_vector=[1.2]*settings.Embedding_Model_Size,top_k=20)
-    # print(results)
+    query_vector =  embedding_model.embed_documents([query])
+    results = db.search_by_vector(collection_name=settings.DB_NAME,query_vector=query_vector[0],top_k=20)
 
 main()
