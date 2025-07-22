@@ -8,7 +8,7 @@ class McqOutput(BaseModel):
     answer: Literal["A", "B", "C", "D"]
 
 
-class OpenAIProvider:
+class OpenAi:
     
     def __init__(self, api_key: str, api_url: str = None,  temperature: float = 0.0, model:str = None):
         

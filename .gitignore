@@ -208,3 +208,4 @@ __marimo__/
 qdrant_db
 Data
 embedder_model_cache
+*.csv

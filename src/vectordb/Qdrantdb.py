@@ -50,7 +50,7 @@ class Qdrantdb:
                                                 payload_m=32)
                                             ),
             optimizers_config=models.OptimizersConfigDiff(
-                indexing_threshold=21000,
+                indexing_threshold=30000,
                 default_segment_number=20,
                 max_optimization_threads=4,
             ),
