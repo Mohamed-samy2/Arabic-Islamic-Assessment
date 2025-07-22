@@ -9,6 +9,7 @@ class Settings(BaseSettings):
     Data_Path:str
     DO_RESET:bool
     DB_NAME:str
+    TOP_K:int
     
     Embedding_Model_Name:str
     BATCH_SIZE:int

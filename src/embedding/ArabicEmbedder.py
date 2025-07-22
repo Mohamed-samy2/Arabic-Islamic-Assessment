@@ -12,7 +12,7 @@ class Embedder(ABC):
         
         print("Using Devive", self.device)
 
-        self.embedding_model = HuggingFaceEmbeddings(model_name = model_name, model_kwargs = {'device':self.device}, encode_kwargs = {'normalize_embeddings': True}, multi_process = False, show_progress= True, cache_folder= './embedder_model_cache')
+        self.embedding_model = HuggingFaceEmbeddings(model_name = model_name, model_kwargs = {'device':self.device}, encode_kwargs = {'normalize_embeddings': True}, multi_process = False, show_progress= False, cache_folder= './embedder_model_cache')
 
     @abstractmethod
     def embed_documents(self, documents):

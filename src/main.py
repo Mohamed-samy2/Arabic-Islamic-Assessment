@@ -78,7 +78,7 @@ def main():
         query = row['question']
         
         query_vector =  embedding_model.embed_documents([query])
-        results = db.search_by_vector(collection_name=settings.DB_NAME,query_vector=query_vector[0],top_k=5)
+        results = db.search_by_vector(collection_name=settings.DB_NAME,query_vector=query_vector[0],top_k=settings.TOP_K)
         
         context = "\n".join(result.payload.get("text", "") for result in results)
         
@@ -109,7 +109,7 @@ def main():
             print(f"{index}/{total}")
     
     results_df = pd.DataFrame(results_list)
-    results_df.to_csv("qa_results.csv", index=False)
+    results_df.to_csv("evaluation.csv", index=False)
     
     print(f"✅ Final Results: {acc}/{total} | Accuracy: {acc/total:.2%}")
 
