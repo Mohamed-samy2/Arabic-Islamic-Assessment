@@ -5,7 +5,9 @@ from text_processing.ArabicTextPreprocessor import ArabicTextPreprocessor
 import os
 import pandas as pd
 from llm.OpenAi import OpenAi
+from llm.Gemini import Gemini
 from llm.prompts.openaiprompt import SYSTEM_PROMPT,HUMAN_PROMPT
+import time
 
 def main():
     
@@ -65,6 +67,7 @@ def main():
             print(f"Finished {i}/{number_of_files}")
             i+=1
     
+    print("Number of counts in vector db " , db.get_count(settings.DB_NAME))
     data = pd.read_csv(settings.EVALUATION_DATA_PATH)
     
     acc = 0
@@ -100,13 +103,16 @@ def main():
         results_list.append({
         "question": query,
         "generated_answer": answer,
+        "context": context,
+        "options": options,
         "correct_label": row['label'],
         "is_correct": answer == row['label'],
         "level": row['level']
         })
         
-        if index % 50==0:
+        if index % 100==0:
             print(f"{index}/{total}")
+            # time.sleep(62)  uncomment if you are using gemini
     
     results_df = pd.DataFrame(results_list)
     results_df.to_csv("evaluation.csv", index=False)

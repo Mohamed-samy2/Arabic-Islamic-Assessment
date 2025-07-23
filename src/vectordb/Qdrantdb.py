@@ -50,7 +50,7 @@ class Qdrantdb:
                                                 payload_m=32)
                                             ),
             optimizers_config=models.OptimizersConfigDiff(
-                indexing_threshold=30000,
+                indexing_threshold=12000,
                 default_segment_number=20,
                 max_optimization_threads=4,
             ),
@@ -120,4 +120,7 @@ class Qdrantdb:
             with_payload=True,
             with_vectors=False,
         )
+    
+    def get_count(self,collection_name:str):
+        return self.client.count(collection_name=collection_name)
         
